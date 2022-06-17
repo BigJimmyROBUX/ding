@@ -1,0 +1,1143 @@
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "ByeBye AC", Text = "Activate when rejoined"})
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "might update", Text = "darn you peanut"})
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "this wont be released", Text = "dont leak it please"})
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "if error, keep adding", Text = "use the second lines for same purpose but rename the localscripts to valid name"})
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "^^^bottom of script", Text = "lumfao"})
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "developed by", Text = "cashew, penut, and pecan"})
+
+--main
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))() 
+
+local function DisableSignal(signal, name)
+    local successes = true
+    for i, connection in next, getconnections(signal) do
+        local success, err = pcall(connection.Disable)
+        if success then
+            print('successfully disconnected ' .. name .. '\'s #' .. tostring(i) .. ' connection')
+        else
+            if err then
+                print('failed to disconnect ' .. name .. '\'s # ' .. tostring(i) .. 'connection due to ' .. err)
+            end
+            successes = false
+        end
+    end
+    return successes
+end
+
+local localscript = game:GetService'Players'.LocalPlayer.PlayerScripts.LocalScript
+local localscript2 = game:GetService'Players'.LocalPlayer.PlayerScripts.LocalScript2
+
+local localscriptSignal = localscript.Changed
+local localscript2Signal = localscript2.Changed
+
+if DisableSignal(localscriptSignal, 'localscript') then
+    localscript:Destroy()
+end
+if DisableSignal(localscript2Signal, 'localscript2') then
+    localscript2:Destroy()
+end
+--change localscript1 or 2 to the anti cheat name of the current game
+	AntiCheat = {
+	ScriptDetectOff = false;
+	TurboNameSpam = false;
+	HideParentInExploit = false;
+	HideParentInPG = false;
+	AutoAntiKick = false;
+	RemoveScripts = false;
+	IntroAudioOff = false;
+	DontJumbleNames = false;
+	OneTimeScramble = false;
+	PrintingOff = false;
+	NoGui = false;
+	Custom1 = false;
+	Attachment = "HairAttachment";
+	Warning1 = false;
+	CheckFocusBreak = false;
+}
+
+AntiCheat.Games = {
+	
+	[176053469] = function()
+		AntiCheat.CheckFocusBreak = true
+		Unnamed.Parent = Parents[3]
+	end,
+	
+	[4052062489] = function()
+		AntiCheat.AutoAntiKick = true
+	end,
+	
+	[5278850819] = function()
+		workspace.FallenPartsDestroyHeight = 0/0
+		AntiCheat.Attachment = "Sf"
+		AntiCheat.Warning1 = true
+		for _,v in pairs(workspace.Structure.KillPart:GetChildren()) do
+			v:Destroy()
+		end
+		for _,v in pairs(workspace.Structure.Edges:GetChildren()) do
+			v:Destroy()
+		end
+		for _,c in pairs(getconnections(char.DescendantAdded)) do c:Disable() end
+		for _,c in pairs(getconnections(hrp:GetPropertyChangedSignal("Velocity"))) do c:Disable() end
+		for _,c in pairs(getconnections(hum:GetPropertyChangedSignal("WalkSpeed"))) do c:Disable() end
+		for _,c in pairs(getconnections(hum:GetPropertyChangedSignal("JumpPower"))) do c:Disable() end
+		for _,c in pairs(getconnections(game.ReplicatedStorage.Remotes.ChildRemoved)) do c:Disable() end
+		game.ReplicatedStorage.Remotes.event:Destroy()
+	end,
+
+	[2988554876] = function()
+		cmdrs.AC:Destroy()
+		cmdlp.PlayerScripts.AntiCheat:Destroy()
+	end
+}
+
+if AntiCheat.Games[game.PlaceId] then
+	pcall(function() AntiCheat.Games[game.PlaceId]() end)
+end
+
+if AntiCheat.Custom1 then
+	local old = mt.__namecall
+	setreadonly(mt, false)
+	mt.__namecall = newcclosure(function(self,...)
+		if self.Name == "TimeEvent" then
+			return
+		end
+		return old(self, ...)
+	end)
+	setreadonly(mt, true)
+end
+
+if AntiCheat.HideParentInPG then
+	getParent = cmdlp.PlayerGui
+end
+
+if AntiCheat.HideParentInExploit then
+	if syn.protect_gui then
+		getParent = syn.protect_gui
+		syn.protect_gui(Unnamed)
+	elseif get_hidden_gui then
+		getParet = get_hidden_gui
+		Unnamed.Parent = get_hidden_gui()
+	else
+		Stand("Your exploit does not support syn.protect_gui/get_hidden_gui!","CMD-X cannot run.","Explanation;","This game has an anti-cheat and our way of stopping it is through syn.protect_gui/get_hidden_gui.","","Run Anyway",true)
+		repeat wait() until RunDude == true
+	end
+end
+
+if AntiCheat.AutoAntiKick then
+	local oldcall = mt.__namecall
+	setreadonly(mt,false)
+	mt.__namecall = newcclosure(function(...)
+		local args = {...}
+		if getnamecallmethod() == "Kick" then
+			return nil
+		end
+		return oldcall(self,...)
+	end)
+end
+
+if AntiCheat.RemoveScripts then
+	for _,v in pairs(cmdp:GetDescendants()) do
+		if v:IsA("LocalScript") and v.Name ~= "Animate" and v.Parent ~= "Chat" then
+			v:Destroy()
+		end
+	end
+	Stand("CMD-X has to delete local scripts!","Your game may not work.","Explanation;","This game has an anticheat and our way of solving it is removing scripts.","","Run Anyway",true)
+	repeat wait() until RunDude == true
+end
+
+if AntiCheat.OneTimeScramble then
+	Unnamed.Name = math.random(1,100000)
+end
+
+local AudioIds = {5032588119}
+
+if AntiCheat.IntroAudioOff == false then
+	local Sound2 = Instance.new("Sound", nil)
+	local c = getconnections(game:GetService("PolicyService").ChildAdded)
+	for i,v in pairs(c) do v:Disable() end
+	Sound2.Parent = game:GetService("PolicyService")
+	for i,v in pairs(c) do v:Enable() end
+	Sound2.Name = "19324854"
+	Sound2.SoundId = "http://www.roblox.com/asset/?id="..AudioIds[1]
+	Sound2:Play()
+end
+
+holder = Instance.new("Frame", getParent)
+holder.Visible = false
+output = Instance.new("Frame", getParent)
+output1 = Instance.new("TextLabel", getParent)
+output2 = Instance.new("TextLabel", getParent)
+output3 = Instance.new("TextLabel", getParent)
+output4 = Instance.new("TextLabel", getParent)
+output5 = Instance.new("TextLabel", getParent)
+output6 = Instance.new("TextLabel", getParent)
+output7 = Instance.new("TextLabel", getParent)
+output8 = Instance.new("TextLabel", getParent)
+output9 = Instance.new("TextLabel", getParent)
+entry = Instance.new("Frame", getParent)
+user = Instance.new("TextLabel", getParent)
+cmd = Instance.new("TextBox", getParent)
+cmdsu = Instance.new("TextLabel", getParent)
+output.Name = "output"
+output.Parent = holder
+output.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+output.BorderSizePixel = 0
+output.Position = UDim2.new(0, -8, 0, 19)
+output.Size = UDim2.new(0, 525, 0, 253)
+output.Style = Enum.FrameStyle.RobloxRound
+output.Visible = false
+
+local Gui = {}
+if not AntiCheat.HideParentInExploit and getParent ~= game then
+	for _,v in pairs(getParent:GetDescendants()) do
+		table.insert(Gui,v.Name)
+		table.insert(Gui,math.random(-2e9,2e9))
+	end
+end
+
+if getParent ~= game then
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if AntiCheat.DontJumbleNames == false then
+			if AntiCheat.HideParentInExploit == false then
+				if AntiCheat.TurboNameSpam == false then
+					Unnamed.Name = Gui[math.random(#Gui)]
+				else
+					for _,v in pairs(Unnamed:GetDescendants()) do
+						v.Name = Gui[math.random(#Gui)]
+					end
+				end
+			else
+				if AntiCheat.TurboNameSpam == false then
+					Unnamed.Name = math.random(1000000)
+				else
+					for _,v in pairs(Unnamed:GetDescendants()) do
+						v.Name = math.random(1000000)
+					end
+				end
+			end
+		end
+	end)
+end
+
+function Confirm(Reason,Reason2)
+	Confirmation = false
+	HeyDestroyed = false
+
+	ConfirmationFrame = Instance.new("Frame", getParent)
+	Sure = Instance.new("TextLabel", getParent)
+	Not = Instance.new("TextLabel", getParent)
+	Help2 = Instance.new("TextLabel", getParent)
+	Yes = Instance.new("TextButton", getParent)
+	No = Instance.new("TextButton", getParent)
+
+	ConfirmationFrame.Name = "ConfirmationFrame"
+	ConfirmationFrame.Parent = Unnamed
+	ConfirmationFrame.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+	ConfirmationFrame.BackgroundTransparency = 0
+	ConfirmationFrame.BorderSizePixel = 0
+	ConfirmationFrame.Position = UDim2.new(0.328281224, 0, 0.362222254, 0)
+	ConfirmationFrame.Size = UDim2.new(0.342812598, 0, 0.275277853, 0)
+
+	Sure.Name = "Sure"
+	Sure.Parent = ConfirmationFrame
+	Sure.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Sure.BackgroundTransparency = 1.000
+	Sure.Position = UDim2.new(0.489562482, 0, 0.113113157, 0)
+	Sure.Size = UDim2.new(0.0199999996, 0, 0.0500000007, 0)
+	Sure.Font = Enum.Font.GothamBold
+	Sure.Text = Reason
+	Sure.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Sure.TextSize = 20.000
+
+	Not.Name = "Not"
+	Not.Parent = ConfirmationFrame
+	Not.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Not.BackgroundTransparency = 1.000
+	Not.Position = UDim2.new(0.459936291, 0, 0.222500637, 0)
+	Not.Size = UDim2.new(0.0692250952, 0, 0.10650862, 0)
+	Not.Font = Enum.Font.GothamBold
+	Not.Text = Reason2
+	Not.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Not.TextSize = 20.000
+
+	if Reason == "Default" then
+		Sure.Text = "Are you sure you want to run this command?"
+	end
+	if Reason2 == "Default" then
+		Not.Text = "This may not work properly."
+	end
+
+	Help2.Name = "Help2"
+	Help2.Parent = ConfirmationFrame
+	Help2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Help2.BackgroundTransparency = 1.000
+	Help2.Position = UDim2.new(0.467900336, 0, 0.834136486, 0)
+	Help2.Size = UDim2.new(0.0622250475, 0, 0.118617564, 0)
+	Help2.Font = Enum.Font.GothamBold
+	Help2.Text = "Need help? "..cordCode
+	Help2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Help2.TextSize = 20.000
+
+	Yes.Name = "Yes"
+	Yes.Parent = ConfirmationFrame
+	Yes.BackgroundColor3 = Color3.fromRGB(93, 93, 93)
+	Yes.BackgroundTransparency = 0.700
+	Yes.BorderColor3 = Color3.fromRGB(53, 51, 51)
+	Yes.BorderSizePixel = 0
+	Yes.Position = UDim2.new(0.310771585, 0, 0.50248313, 0)
+	Yes.Size = UDim2.new(0.155925438, 0, 0.147881001, 0)
+	Yes.Font = Enum.Font.GothamBold
+	Yes.Text = "Yes"
+	Yes.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Yes.TextSize = 30.000
+	Yes.MouseButton1Down:Connect(function()
+		ConfirmationFrame:Destroy()
+		Confirmation = true
+		HeyDestroyed = true
+	end)
+
+	No.Name = "No"
+	No.Parent = ConfirmationFrame
+	No.BackgroundColor3 = Color3.fromRGB(93, 93, 93)
+	No.BackgroundTransparency = 0.700
+	No.BorderColor3 = Color3.fromRGB(53, 51, 51)
+	No.BorderSizePixel = 0
+	No.Position = UDim2.new(0.545502543, 0, 0.50248313, 0)
+	No.Size = UDim2.new(0.155925438, 0, 0.147881001, 0)
+	No.Font = Enum.Font.GothamBold
+	No.Text = "No"
+	No.TextColor3 = Color3.fromRGB(255, 255, 255)
+	No.TextSize = 30.000
+	No.MouseButton1Down:Connect(function()
+		ConfirmationFrame:Destroy()
+		Confirmation = false
+		HeyDestroyed = true
+	end)
+
+	repeat wait(.01) until HeyDestroyed == true
+end
+
+holder.Name = "holder"
+holder.Parent = Unnamed
+holder.ZIndex = 2147483647
+holder.BackgroundColor3 = Color3.new(1, 1, 1)
+holder.BackgroundTransparency = 1
+holder.Position = UDim2.new(0, SavedPos.X, 0, SavedPos.Y)
+holder.Size = UDim2.new(0, 525, 0, 277)
+holder.Active = false
+
+local updatedebounce = tick()
+holder.Changed:Connect(function()
+	if tick() - updatedebounce > 2 then
+		SavedPos = {X = holder.AbsolutePosition.X, Y = holder.AbsolutePosition.Y}
+		updatesaves()
+		updatedebounce = tick()
+	end
+end)
+
+HoldTab = Instance.new("Frame",getParent)
+TnOT = Instance.new("TextLabel",getParent)
+Splitz = Instance.new("Frame",getParent)
+T1 = Instance.new("TextLabel",getParent)
+XE = Instance.new("TextButton",getParent)
+T2 = Instance.new("TextLabel",getParent)
+XE_2 = Instance.new("TextButton",getParent)
+T4 = Instance.new("TextLabel",getParent)
+XE_3 = Instance.new("TextButton",getParent)
+T3 = Instance.new("TextLabel",getParent)
+XE_4 = Instance.new("TextButton",getParent)
+T8 = Instance.new("TextLabel",getParent)
+XE_5 = Instance.new("TextButton",getParent)
+T6 = Instance.new("TextLabel",getParent)
+XE_6 = Instance.new("TextButton",getParent)
+T5 = Instance.new("TextLabel",getParent)
+XE_7 = Instance.new("TextButton",getParent)
+T7 = Instance.new("TextLabel",getParent)
+XE_8 = Instance.new("TextButton",getParent)
+T9 = Instance.new("TextLabel",getParent)
+XE_9 = Instance.new("TextButton",getParent)
+
+HoldTab.Name = "HoldTab"
+HoldTab.Parent = Unnamed
+HoldTab.Active = true
+createDrag(HoldTab)
+HoldTab.BackgroundColor3 = Color3.new(0.219608, 0.219608, 0.219608)
+HoldTab.BorderSizePixel = 0
+HoldTab.Position = UDim2.new(0.745833397, 0, 0.518735349, 0)
+HoldTab.Size = UDim2.new(0, 148, 0, 306)
+
+if TabsOff then HoldTab.Visible = false end
+
+TnOT.Name = "TnOT"
+TnOT.Parent = HoldTab
+TnOT.BackgroundColor3 = Color3.new(1, 1, 1)
+TnOT.BackgroundTransparency = 1
+TnOT.BorderSizePixel = 0
+TnOT.Position = UDim2.new(-0.00416688668, 0, -0.000872443721, 0)
+TnOT.Size = UDim2.new(0, 148, 0, 23)
+TnOT.Font = Enum.Font.GothamBold
+TnOT.Text = "CMD TABS"
+TnOT.TextColor3 = Color3.new(1, 1, 1)
+TnOT.TextSize = 20
+
+Splitz.Name = "Splitz"
+Splitz.Parent = HoldTab
+Splitz.BackgroundColor3 = Color3.new(1, 1, 1)
+Splitz.BorderSizePixel = 0
+Splitz.Position = UDim2.new(-0.00416660309, 0, 0.074290961, 0)
+Splitz.Size = UDim2.new(0, 148, 0, 1)
+
+entry.Name = "entry"
+entry.Parent = holder
+entry.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+entry.BorderSizePixel = 0
+entry.Position = UDim2.new(-0.0152380951, 0, 0.965582669, 0)
+entry.Size = UDim2.new(0, 525, 0, 38)
+ 
+user.Name = "user"
+user.Parent = entry
+user.BackgroundColor3 = Color3.new(1, 1, 1)
+user.BackgroundTransparency = 1
+user.Position = UDim2.new(-0.0152380941, 0, 0, 0)
+user.Size = UDim2.new(0, 137, 0, 36)
+user.Font = Enum.Font.Code
+user.Text = prompt
+user.TextColor3 = Color3.new(1, 0.333333, 0)
+user.TextSize = 16
+user.TextXAlignment = Enum.TextXAlignment.Right
+ 
+cmd.Name = "cmd"
+cmd.Parent = cmdsu
+cmd.BackgroundColor3 = Color3.new(1, 1, 1)
+cmd.BackgroundTransparency = 1
+cmd.BorderSizePixel = 0
+cmd.Position = UDim2.new(-0, 0, 0, 0)
+cmd.Size = UDim2.new(0, 341, 0, 35)
+cmd.Font = Enum.Font.Code
+cmd.PlaceholderText = "Enter CMD here"
+cmd.Text = ""
+cmd.TextWrapped = true
+cmd.TextColor3 = Color3.fromRGB(255,255,255)
+cmd.PlaceholderColor3 = Color3.fromRGB(255,255,255)
+cmd.TextSize = 14
+cmd.TextXAlignment = Enum.TextXAlignment.Left
+cmd.ClearTextOnFocus = false
+
+cmdsu.Name = "cmdsu"
+cmdsu.Parent = entry
+cmdsu.BackgroundColor3 = Color3.new(1, 1, 1)
+cmdsu.BackgroundTransparency = 1
+cmdsu.BorderSizePixel = 0
+cmdsu.Position = UDim2.new(0.274285644, 0, 0, 0)
+cmdsu.Size = UDim2.new(0, 341, 0, 35)
+cmdsu.Font = Enum.Font.Code
+cmdsu.Text = ""
+cmdsu.TextWrapped = true
+cmdsu.TextColor3 = Color3.fromRGB(100,100,100)
+cmdsu.TextSize = 14
+cmdsu.TextXAlignment = Enum.TextXAlignment.Left
+
+output1.Name = "output1"
+output1.Parent = output
+output1.BackgroundColor3 = Color3.new(1, 1, 1)
+output1.BackgroundTransparency = 1
+output1.Position = UDim2.new(0.0157605428, 0, 0.849240005, 0)
+output1.Size = UDim2.new(0, 500, 0, 27)
+output1.Font = Enum.Font.Code
+output1.Text = "Need help? "..cordCode
+output1.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output1.TextSize = 16
+output1.TextXAlignment = Enum.TextXAlignment.Left
+output1.TextWrapped = true
+output1.TextTruncate = Enum.TextTruncate.AtEnd
+
+output2.Name = "output2"
+output2.Parent = output
+output2.BackgroundColor3 = Color3.new(1, 1, 1)
+output2.BackgroundTransparency = 1
+output2.Position = UDim2.new(0.0157605428, 0, 0.74252063, 0)
+output2.Size = UDim2.new(0, 500, 0, 27)
+output2.Font = Enum.Font.Code
+output2.Text = "Current version: "..ver
+output2.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output2.TextSize = 16
+output2.TextXAlignment = Enum.TextXAlignment.Left
+output2.TextWrapped = true
+output2.TextTruncate = Enum.TextTruncate.AtEnd
+ 
+output3.Name = "output3"
+output3.Parent = output
+output3.BackgroundColor3 = Color3.new(1, 1, 1)
+output3.BackgroundTransparency = 1
+output3.Position = UDim2.new(0.0157605428, 0, 0.639753819, 0)
+output3.Size = UDim2.new(0, 500, 0, 27)
+output3.Font = Enum.Font.Code
+output3.Text = "Made by "..DevCords[1]
+output3.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output3.TextSize = 16
+output3.TextXAlignment = Enum.TextXAlignment.Left
+output3.TextWrapped = true
+output3.TextTruncate = Enum.TextTruncate.AtEnd
+ 
+output4.Name = "output4"
+output4.Parent = output
+output4.BackgroundColor3 = Color3.new(1, 1, 1)
+output4.BackgroundTransparency = 1
+output4.Position = UDim2.new(0.0157605428, 0, 0.533034444, 0)
+output4.Size = UDim2.new(0, 500, 0, 27)
+output4.Font = Enum.Font.Code
+output4.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output4.TextSize = 16
+output4.TextXAlignment = Enum.TextXAlignment.Left
+output4.TextWrapped = true
+output4.TextTruncate = Enum.TextTruncate.AtEnd
+local Hints = {"Did you know you can execute multiple commands with ';;'?","Did you know you can create a wait using timedcmd in loops?","You can find commands using 'cmds'.","You can change your prefix by doing 'prefixnew (key)'","Did you know CMD-X was created in October 2019?"}
+output4.Text = Hints[math.random(1,#Hints)]
+
+output5.Name = "output5"
+output5.Parent = output
+output5.BackgroundColor3 = Color3.new(1, 1, 1)
+output5.BackgroundTransparency = 1
+output5.Position = UDim2.new(0.0157605428, 0, 0.430267632, 0)
+output5.Size = UDim2.new(0, 500, 0, 27)
+output5.Font = Enum.Font.Code
+output5.Text = ""
+output5.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output5.TextSize = 16
+output5.TextXAlignment = Enum.TextXAlignment.Left
+output5.TextWrapped = true
+output5.TextTruncate = Enum.TextTruncate.AtEnd
+ 
+output6.Name = "output6"
+output6.Parent = output
+output6.BackgroundColor3 = Color3.new(1, 1, 1)
+output6.BackgroundTransparency = 1
+output6.Position = UDim2.new(0.0157605428, 0, 0.323548257, 0)
+output6.Size = UDim2.new(0, 500, 0, 27)
+output6.Font = Enum.Font.Code
+output6.Text = ""
+output6.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output6.TextSize = 16
+output6.TextXAlignment = Enum.TextXAlignment.Left
+output6.TextWrapped = true
+output6.TextTruncate = Enum.TextTruncate.AtEnd
+ 
+output7.Name = "output7"
+output7.Parent = output
+output7.BackgroundColor3 = Color3.new(1, 1, 1)
+output7.BackgroundTransparency = 1
+output7.Position = UDim2.new(0.0157605428, 0, 0.22078146, 0)
+output7.Size = UDim2.new(0, 500, 0, 27)
+output7.Font = Enum.Font.Code
+output7.Text = ""
+output7.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output7.TextSize = 16
+output7.TextXAlignment = Enum.TextXAlignment.Left
+output7.TextWrapped = true
+output7.TextTruncate = Enum.TextTruncate.AtEnd
+ 
+output8.Name = "output8"
+output8.Parent = output
+output8.BackgroundColor3 = Color3.new(1, 1, 1)
+output8.BackgroundTransparency = 1
+output8.Position = UDim2.new(0.0157605428, 0, 0.114062086, 0)
+output8.Size = UDim2.new(0, 500, 0, 27)
+output8.Font = Enum.Font.Code
+output8.Text = ""
+output8.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output8.TextSize = 16
+output8.TextXAlignment = Enum.TextXAlignment.Left
+output8.TextWrapped = true
+output8.TextTruncate = Enum.TextTruncate.AtEnd
+ 
+output9.Name = "output9"
+output9.Parent = output
+output9.BackgroundColor3 = Color3.new(1, 1, 1)
+output9.BackgroundTransparency = 1
+output9.Position = UDim2.new(0.0157605428, 0, 0.0112952888, 0)
+output9.Size = UDim2.new(0, 500, 0, 27)
+output9.Font = Enum.Font.Code
+output9.Text = ""
+output9.TextColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+output9.TextSize = 16
+output9.TextXAlignment = Enum.TextXAlignment.Left
+output9.TextWrapped = true
+output9.TextTruncate = Enum.TextTruncate.AtEnd
+
+function sFLY(vfly)
+	FLYING = false
+	speedofthefly = 1
+	speedofthevfly = 1
+	while not cmdlp or not cmdlp.Character or not cmdlp.Character:FindFirstChild('HumanoidRootPart') or not cmdlp.Character:FindFirstChild('Humanoid') or not cmdm do
+		 wait()
+	end 
+	local T = cmdlp.Character.HumanoidRootPart
+	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+	local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+	local SPEED = 0
+	local function FLY()
+		FLYING = true
+		local BG = Instance.new('BodyGyro', T)
+		local BV = Instance.new('BodyVelocity', T)
+		BG.P = 9e4
+		BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+		BG.cframe = T.CFrame
+		BV.velocity = Vector3.new(0, 0, 0)
+		BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+		spawn(function()
+			while FLYING do
+				if not vfly then
+					cmdlp.Character:FindFirstChild("Humanoid").PlatformStand = true
+				end
+				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
+					SPEED = 50
+				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
+					SPEED = 0
+				end
+				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+				else
+					BV.velocity = Vector3.new(0, 0, 0)
+				end
+				BG.cframe = workspace.CurrentCamera.CoordinateFrame
+				wait()
+			end
+			CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+			lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+			SPEED = 0
+			BG:destroy()
+			BV:destroy()
+			cmdlp.Character.Humanoid.PlatformStand = false
+		end)
+	end
+	cmdm.KeyDown:connect(function(KEY)
+		if KEY:lower() == 'w' then
+			if vfly then
+				CONTROL.F = speedofthevfly
+			else
+				CONTROL.F = speedofthefly
+			end
+		elseif KEY:lower() == 's' then
+			if vfly then
+				CONTROL.B = - speedofthevfly
+			else
+				CONTROL.B = - speedofthefly
+			end
+		elseif KEY:lower() == 'a' then
+			if vfly then
+				CONTROL.L = - speedofthevfly
+			else
+				CONTROL.L = - speedofthefly
+			end
+		elseif KEY:lower() == 'd' then
+			if vfly then
+				CONTROL.R = speedofthevfly
+			else
+				CONTROL.R = speedofthefly
+			end
+		elseif KEY:lower() == 'y' then
+			if vfly then
+				CONTROL.Q = speedofthevfly*2
+			else
+				CONTROL.Q = speedofthefly*2
+			end
+		elseif KEY:lower() == 't' then
+			if vfly then
+				CONTROL.E = -speedofthevfly*2
+			else
+				CONTROL.E = -speedofthefly*2
+			end
+		end
+	end)
+	cmdm.KeyUp:connect(function(KEY)
+		if KEY:lower() == 'w' then
+			CONTROL.F = 0
+		elseif KEY:lower() == 's' then
+			CONTROL.B = 0
+		elseif KEY:lower() == 'a' then
+			CONTROL.L = 0
+		elseif KEY:lower() == 'd' then
+			CONTROL.R = 0
+		elseif KEY:lower() == 'y' then
+			CONTROL.Q = 0
+		elseif KEY:lower() == 't' then
+			CONTROL.E = 0
+		end
+	end)
+	FLY()
+end
+
+opxholder = Instance.new("Frame", getParent)
+opxviewertitle = Instance.new("TextLabel", getParent)
+xoutofopx = Instance.new("TextButton", getParent)
+opxscrollholder = Instance.new("Frame", getParent)
+opxreferer = Instance.new("TextLabel", getParent)
+opxsplitting = Instance.new("Frame", getParent)
+opxScrolling = Instance.new("TextLabel", getParent)
+
+opxholder.Name = "opxholder"
+opxholder.Parent = Unnamed
+opxholder.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+opxholder.BorderSizePixel = 0
+opxholder.Position = UDim2.new(0.217357904, 0, 0.208845213, 0)
+opxholder.Size = UDim2.new(0, 424, 0, 294)
+opxholder.Visible = false
+opxholder.Active = true
+createDrag(opxholder)
+
+opxviewertitle.Name = "opxviewertitle"
+opxviewertitle.Parent = opxholder
+opxviewertitle.BackgroundColor3 = Color3.new(1, 1, 1)
+opxviewertitle.BackgroundTransparency = 1
+opxviewertitle.Position = UDim2.new(0.264150947, 0, 0, 0)
+opxviewertitle.Size = UDim2.new(0, 200, 0, 22)
+opxviewertitle.Font = Enum.Font.GothamBold
+opxviewertitle.Text = "CMD-X OUTPUT-LONGER"
+opxviewertitle.TextColor3 = Color3.new(1, 1, 1)
+opxviewertitle.TextSize = 14
+
+xoutofopx.Name = "xoutofopx"
+xoutofopx.Parent = opxholder
+xoutofopx.BackgroundColor3 = Color3.new(1, 1, 1)
+xoutofopx.BackgroundTransparency = 1
+xoutofopx.Position = UDim2.new(0.948113203, 0, 0, 0)
+xoutofopx.Size = UDim2.new(0, 22, 0, 22)
+xoutofopx.Font = Enum.Font.GothamBold
+xoutofopx.Text = "X"
+xoutofopx.TextColor3 = Color3.new(1, 1, 1)
+xoutofopx.TextSize = 20
+xoutofopx.MouseButton1Down:Connect(function()
+	opxholder.Visible = false
+end)
+
+opxscrollholder.Name = "opxscrollholder"
+opxscrollholder.Parent = opxholder
+opxscrollholder.BackgroundColor3 = Color3.new(0.164706, 0.164706, 0.164706)
+opxscrollholder.BorderSizePixel = 0
+opxscrollholder.Position = UDim2.new(0.0306603778, 0, 0.0748299286, 0)
+opxscrollholder.Size = UDim2.new(0, 397, 0, 232)
+
+opxreferer.Name = "opxreferer"
+opxreferer.Parent = opxscrollholder
+opxreferer.BackgroundColor3 = Color3.new(0.164706, 0.164706, 0.164706)
+opxreferer.BorderSizePixel = 0
+opxreferer.Size = UDim2.new(0, 397, 0, 20)
+opxreferer.Font = Enum.Font.Gotham
+opxreferer.Text = " Output-Longer"
+opxreferer.TextColor3 = Color3.new(1, 1, 1)
+opxreferer.TextSize = 14
+opxreferer.TextXAlignment = Enum.TextXAlignment.Left
+
+opxsplitting.Name = "splitting"
+opxsplitting.Parent = opxscrollholder
+opxsplitting.BackgroundColor3 = Color3.new(1, 1, 1)
+opxsplitting.BorderColor3 = Color3.new(1, 1, 1)
+opxsplitting.Position = UDim2.new(0.0100755664, 0, 0.0892857313, 0)
+opxsplitting.Size = UDim2.new(0, 389, 0, 0)
+
+opxScrolling.Name = "opxScrolling"
+opxScrolling.Parent = opxscrollholder
+opxScrolling.BackgroundColor3 = Color3.new(0.164706, 0.164706, 0.164706)
+opxScrolling.BorderColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+opxScrolling.BorderSizePixel = 0
+opxScrolling.Position = UDim2.new(0.00986763742, 0, 0.102678575, 0)
+opxScrolling.Size = UDim2.new(0, 389, 0, 204)
+opxScrolling.TextColor3 = Color3.new(1, 1, 1)
+opxScrolling.TextSize = 12
+opxScrolling.Font = Enum.Font.Code
+opxScrolling.TextXAlignment = Enum.TextXAlignment.Left
+opxScrolling.TextYAlignment = Enum.TextYAlignment.Top
+opxScrolling.TextWrapped = true
+opxScrolling.TextScaled = true
+
+function opxL(title,text)
+	opxreferer.Text = " "..title
+	opxScrolling.Text = text
+	opxholder.Visible = true
+end
+
+if _G.sCheck then _G.sCheck:Disconnect() end
+if sDetect then
+	while not cmdlp.Character do
+		cmdrs2.RenderStepped:Wait()
+	end
+	local check1 = cmdlp.Character:FindFirstChild("Head")
+	if check1 then
+		local check2 = check1:FindFirstChild(AntiCheat.Attachment)
+		if check2 then
+			check2:Destroy()
+		end
+	end
+	_G.sCheck = cmdlp.CharacterAdded:Connect(function()
+		if sDetect then
+			wait(1)
+			local check1 = cmdlp.Character:FindFirstChild("Head")
+			if check1 then
+				local check2 = check1:FindFirstChild(AntiCheat.Attachment)
+				if check2 then
+					check2:Destroy()
+				end
+			end
+		end
+	end)
+end
+
+---------------------------------------|
+-- Functions: -------------------------|
+function findplr(args, tbl)
+	if tbl == nil then
+		local tbl = cmdp:GetPlayers()
+		if args == "me" then
+			return cmdlp
+		elseif args == "random" then 
+			return tbl[math.random(1,#tbl)]
+		elseif args == "new" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v.AccountAge < 30 and v ~= cmdlp then
+					vAges[#vAges+1] = v
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "old" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v.AccountAge > 30 and v ~= cmdlp then
+					vAges[#vAges+1] = v
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "bacon" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v.Character:FindFirstChild("Pal Hair") or v.Character:FindFirstChild("Kate Hair") and v ~= cmdlp then
+					vAges[#vAges+1] = v
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "friend" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v:IsFriendsWith(cmdlp.UserId) and v ~= cmdlp then
+					vAges[#vAges+1] = v
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "notfriend" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if not v:IsFriendsWith(cmdlp.UserId) and v ~= cmdlp then
+					vAges[#vAges+1] = v
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "ally" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v.Team == cmdlp.Team and v ~= cmdlp then
+					vAges[#vAges+1] = v
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "enemy" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v.Team ~= cmdlp.Team then
+					vAges[#vAges+1] = v
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "near" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v ~= cmdlp then
+					local math = (v.Character:FindFirstChild("HumanoidRootPart").Position - cmdlp.Character.HumanoidRootPart.Position).magnitude
+					if math < 30 then
+						vAges[#vAges+1] = v
+					end
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		elseif args == "far" then
+			local vAges = {} 
+			for _,v in pairs(tbl) do
+				if v ~= cmdlp then
+					local math = (v.Character:FindFirstChild("HumanoidRootPart").Position - cmdlp.Character.HumanoidRootPart.Position).magnitude
+					if math > 30 then
+						vAges[#vAges+1] = v
+					end
+				end
+			end
+			return vAges[math.random(1,#vAges)]
+		else 
+			for _,v in pairs(tbl) do
+				if v.Name:lower():find(args:lower()) or v.DisplayName:lower():find(args:lower()) then
+					return v
+				end
+			end
+		end
+	else
+		for _, plr in pairs(tbl) do
+			if plr.UserName:lower():find(args:lower()) or plr.DisplayName:lower():find(args:lower()) then
+				return plr
+			end
+		end
+	end
+end
+ 
+function cmdnum(str)
+	return tonumber(str) ~= nil
+end
+
+function cmd15(plr)
+	if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+		return true
+	end
+end
+
+function cmd6(plr)
+	if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+		return true
+	end
+end
+
+function x(v)
+	if v then
+		for _,i in pairs(workspace:GetDescendants()) do
+			if i:IsA("BasePart") and not i.Parent:FindFirstChild("Humanoid") and not i.Parent.Parent:FindFirstChild("Humanoid") then
+				i.LocalTransparencyModifier = 0.5
+			end
+		end
+	else
+		for _,i in pairs(workspace:GetDescendants()) do
+			if i:IsA("BasePart") and not i.Parent:FindFirstChild("Humanoid") and not i.Parent.Parent:FindFirstChild("Humanoid") then
+				i.LocalTransparencyModifier = 0
+			end
+		end
+	end
+end
+
+logsholding2 = Instance.new("Frame", getParent)
+xoutoflogs2 = Instance.new("TextButton", getParent)
+logsscrollholder2 = Instance.new("Frame", getParent)
+refereral2 = Instance.new("TextLabel", getParent)
+splittinger2 = Instance.new("Frame", getParent)
+Scrollinglogs2 = Instance.new("ScrollingFrame", getParent)
+Save22 = Instance.new("TextBox", getParent)
+
+logsholding2.Name = "logsholding2"
+logsholding2.Parent = Unnamed
+logsholding2.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+logsholding2.BorderSizePixel = 0
+logsholding2.Position = UDim2.new(0.217357904, 0, 0.208845213, 0)
+logsholding2.Size = UDim2.new(0, 424, 0, 294)
+logsholding2.Visible = false
+createDrag(logsholding2)
+logsholding2.Active = true
+
+xoutoflogs2.Name = "xoutoflogs2"
+xoutoflogs2.Parent = logsholding2
+xoutoflogs2.BackgroundColor3 = Color3.new(1, 1, 1)
+xoutoflogs2.BackgroundTransparency = 1
+xoutoflogs2.Position = UDim2.new(0.948113203, 0, 0, 0)
+xoutoflogs2.Size = UDim2.new(0, 22, 0, 22)
+xoutoflogs2.Font = Enum.Font.GothamBold
+xoutoflogs2.Text = "X"
+xoutoflogs2.TextColor3 = Color3.new(1, 1, 1)
+xoutoflogs2.TextSize = 20
+xoutoflogs2.MouseButton1Down:Connect(function()
+	logsholding2.Visible = false
+end)
+
+logsscrollholder2.Name = "logsscrollholder2"
+logsscrollholder2.Parent = logsholding2
+logsscrollholder2.BackgroundColor3 = Color3.new(0.164706, 0.164706, 0.164706)
+logsscrollholder2.BorderSizePixel = 0
+logsscrollholder2.Position = UDim2.new(0.0306603778, 0, 0.0748299286, 0)
+logsscrollholder2.Size = UDim2.new(0, 397, 0, 232)
+
+refereral2.Name = "refereral2"
+refereral2.Parent = logsscrollholder2
+refereral2.BackgroundColor3 = Color3.new(0.164706, 0.164706, 0.164706)
+refereral2.BorderSizePixel = 0
+refereral2.Size = UDim2.new(0, 397, 0, 20)
+refereral2.Font = Enum.Font.Gotham
+refereral2.Text = " Username | Message"
+refereral2.TextColor3 = Color3.new(1, 1, 1)
+refereral2.TextSize = 14
+refereral2.TextXAlignment = Enum.TextXAlignment.Left
+
+splittinger2.Name = "splittinger2"
+splittinger2.Parent = logsscrollholder2
+splittinger2.BackgroundColor3 = Color3.new(1, 1, 1)
+splittinger2.BorderColor3 = Color3.new(1, 1, 1)
+splittinger2.Position = UDim2.new(0.0100755664, 0, 0.0892857313, 0)
+splittinger2.Size = UDim2.new(0, 389, 0, 0)
+
+Scrollinglogs2.Name = "Scrollinglogs2"
+Scrollinglogs2.Parent = logsscrollholder2
+Scrollinglogs2.BackgroundColor3 = Color3.new(0.164706, 0.164706, 0.164706)
+Scrollinglogs2.BorderColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Scrollinglogs2.BorderSizePixel = 0
+Scrollinglogs2.Position = UDim2.new(0.00986763742, 0, 0.102678575, 0)
+Scrollinglogs2.Size = UDim2.new(0, 389, 0, 204)
+Scrollinglogs2.ScrollBarThickness = 10
+
+Save22.Name = "Save2"
+Save22.Parent = logsholding2
+Save22.BackgroundColor3 = Color3.new(0.164706, 0.164706, 0.164706)
+Save22.BorderSizePixel = 0
+Save22.Position = UDim2.new(0.275943398, 0, 0.887755096, 0)
+Save22.Size = UDim2.new(0, 188, 0, 26)
+Save22.Font = Enum.Font.GothamBold
+Save22.TextScaled = true
+Save22.Text = ""
+Save22.TextColor3 = Color3.new(1, 1, 1)
+Save22.TextSize = 14
+Save22.TextScaled = true
+Save22.PlaceholderText = "Type here..."
+Save22.FocusLost:Connect(function()
+	require(cmdlp.PlayerScripts.ChatScript.ChatMain).MessagePosted:fire("SCHAT/console/type/"..Save22.Text)
+end)
+
+function CreateSCLabel(Prefix, Text)
+	local plr = cmdp:GetChildren()
+	local sf = Scrollinglogs2
+	if #sf:GetChildren() >= 2546 then
+		sf:ClearAllChildren()
+	end
+	local alls = 0
+	for _,v in pairs(sf:GetChildren()) do
+		if v then
+			alls = v.Size.Y.Offset + alls
+		end
+		if not v then
+			alls = 0
+		end
+	end
+	local tl = Instance.new('TextLabel', sf)
+	local il = Instance.new('Frame', tl)
+	tl.Name = Prefix
+	tl.ZIndex = 6
+	tl.Text = "["..Prefix.."] "..Text
+	tl.Size = UDim2.new(0,322,0,60)
+	tl.BackgroundTransparency = 1
+	tl.BorderSizePixel = 0
+	tl.Font = "SourceSansBold"
+	tl.Position = UDim2.new(-1,0,0,alls)
+	tl.TextTransparency = 1
+	tl.TextScaled = false
+	tl.TextSize = 14
+	tl.TextWrapped = true
+	tl.TextXAlignment = "Left"
+	tl.TextYAlignment = "Top"
+	il.BackgroundTransparency = 1
+	il.BorderSizePixel = 0
+	il.Size = UDim2.new(0,12,1,0)
+	il.Position = UDim2.new(0,316,0,0)
+	tl.TextColor3 = Color3.fromRGB(255,255,255)
+	tl.Size = UDim2.new(0,322,0,tl.TextBounds.Y)
+	sf.CanvasSize = UDim2.new(0,0,0,alls+tl.TextBounds.Y)
+	sf.CanvasPosition = Vector2.new(0,sf.CanvasPosition.Y+tl.TextBounds.Y)
+	local size2 = sf.CanvasSize.Y.Offset
+	game:GetService("TweenService"):Create(tl, TweenInfo.new(.5, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Position = UDim2.new(0,3,0,alls)}):Play()
+	for i = 0,50 do
+		game:GetService("RunService").Heartbeat:Wait()
+		tl.TextTransparency = tl.TextTransparency - 0.05
+	end
+	tl.TextTransparency = 0
+end
+
+function useCommand.anticheat()
+	if arguments[2] == "scriptdetectoff" then
+		if AntiCheat.ScriptDetectOff then
+			AntiCheat.ScriptDetectOff = false
+		else
+			AntiCheat.ScriptDetectOff = true
+		end
+	elseif arguments[2] == "turbonamespam" then
+		if AntiCheat.TurboNameSpam then
+			AntiCheat.TurboNameSpam = false
+		else
+			AntiCheat.TurboNameSpam = true
+		end
+	elseif arguments[2] == "hideparentinexploit" then
+		if AntiCheat.HideParentInExploit then
+			AntiCheat.HideParentInExploit = false
+		else
+			AntiCheat.HideParentInExploit = true
+		end
+	elseif arguments[2] == "hideparentinpg" then
+		if AntiCheat.HideParentInPG then
+			AntiCheat.HideParentInPG = false
+		else
+			AntiCheat.HideParentInPG = true
+		end
+	elseif arguments[2] == "autoantikick" then
+		if AntiCheat.AutoAntiKick then
+			AntiCheat.AutoAntiKick = false
+		else
+			AntiCheat.AutoAntiKick = true
+		end
+	elseif arguments[2] == "removescripts" then
+		if AntiCheat.RemoveScripts then
+			AntiCheat.RemoveScripts = false
+		else
+			AntiCheat.RemoveScripts = true
+		end
+	elseif arguments[2] == "introaudiooff" then
+		if AntiCheat.IntroAudioOff then
+			AntiCheat.IntroAudioOff = false
+		else
+			AntiCheat.IntroAudioOff = true
+		end
+	elseif arguments[2] == "dontjumblenames" then
+		if AntiCheat.DontJumbleNames then
+			AntiCheat.DontJumbleNames = false
+		else
+			AntiCheat.DontJumbleNames = true
+		end
+	elseif arguments[2] == "onetimescramble" then
+		if AntiCheat.OneTimeScramble then
+			AntiCheat.OneTimeScramble = false
+		else
+			AntiCheat.OneTimeScramble = true
+		end
+	elseif arguments[2] == "printingoff" then
+		if AntiCheat.PrintingOff then
+			AntiCheat.PrintingOff = false
+		else
+			AntiCheat.PrintingOff = true
+		end
+	elseif arguments[2] == "nogui" then
+		if AntiCheat.NoGui then
+			AntiCheat.NoGui = false
+		else
+			AntiCheat.NoGui = true
+		end
+	end
+	opx("-","Turned on anticheat variable")
+	updatesaves()
+end
+
+local eventbypass
+
+eventbypass = hookmetamethod(game, "__namecall", function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if not checkcaller() and self.Name == "Anti_Cheat_Remote" and method == "FireServer" then
+        print("Anti Cheat remote was called and blocked.")
+        return; -- do nothing if called
+    end
+
+    return eventbypass(self, ...)
+end)
